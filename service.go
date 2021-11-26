@@ -99,9 +99,44 @@ func (config *Config) LipaNaMpesaOnline(stkRequest *LipaNaMpesaRequest) (string,
 
 	body, err := ioutil.ReadAll(response.Body)
 
+	return string(body), nil
+}
+
+func (config *Config) RegisterURL(requestBody *RegisterURL) (string, error) {
+	body, err := json.Marshal(requestBody)
+
 	if err != nil {
 		return "", err
 	}
 
-	return string(body), nil
+	client := http.Client{}
+
+	request, err := http.NewRequest("POST",
+		fmt.Sprintf("%smpesa/c2b/v1/registerurl",
+			config.getBaseUrl()), bytes.NewBuffer(body))
+
+	if err != nil {
+		return "", err
+	}
+
+	token, err := config.generateToken()
+
+	if err != nil {
+		return "", err
+	}
+
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
+
+	response, err := client.Do(request)
+
+	if err != nil {
+		return "", err
+	}
+
+	defer response.Body.Close()
+
+	apiResponse, err := ioutil.ReadAll(response.Body)
+
+	return string(apiResponse), err
 }

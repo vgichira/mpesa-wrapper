@@ -20,4 +20,11 @@ type (
 		AccountReference  string `json:"AccountReference"`
 		TransactionDesc   string `json:"TransactionDesc"`
 	}
+
+	RegisterURL struct {
+		ValidationURL   string `json:"ValidationURL"`
+		ConfirmationURL string `json:"ConfirmationURL"`
+		ResponseType    string `json:"ResponseType"`
+		ShortCode       string `json:"ShortCode"`
+	}
 )
