@@ -14,7 +14,11 @@ import (
 )
 
 func Init(consumerKey, consumerSecret, environment string) *Config {
-	return &Config{consumerKey, consumerSecret, environment}
+	return &Config{
+		ConsumerKey:    consumerKey,
+		ConsumerSecret: consumerSecret,
+		Environment:    environment,
+	}
 }
 
 func (config *Config) getBaseUrl() string {
