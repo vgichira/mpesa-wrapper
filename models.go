@@ -35,4 +35,17 @@ type (
 		BillRefNumber string `json:"BillRefNumber"`
 		ShortCode     string `json:"ShortCode"`
 	}
+
+	B2C struct {
+		InitiatorName      string `json:"InitiatorName"`
+		SecurityCredential string `json:"SecurityCredential"`
+		CommandID          string `json:"CommandID"`
+		Amount             string `json:"Amount"`
+		PartyA             string `json:"PartyA"`
+		PartyB             string `json:"PartyB"`
+		Remarks            string `json:"Remarks"`
+		QueueTimeoutURL    string `json:"QueueTimeOutURL"`
+		ResultURL          string `json:"ResultURL"`
+		Occassion          string `json:"Occassion"`
+	}
 )
