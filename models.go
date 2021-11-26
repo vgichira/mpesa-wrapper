@@ -48,4 +48,18 @@ type (
 		ResultURL          string `json:"ResultURL"`
 		Occassion          string `json:"Occassion"`
 	}
+
+	Reversal struct {
+		Initiator              string `json:"Initiator"`
+		SecurityCredential     string `json:"SecurityCredential"`
+		CommandID              string `json:"CommandID"`
+		TransactionID          string `json:"TransactionID"`
+		Amount                 string `json:"Amount"`
+		ReceiverParty          string `json:"ReceiverParty"`
+		ReceiverIdentifierType string `json:"ReceiverIdentifierType"`
+		ResultURL              string `json:"ResultURL"`
+		QueueTimeoutURL        string `json:"QueueTimeoutURL"`
+		Remarks                string `json:"Remarks"`
+		Occasion               string `json:"Occasion"`
+	}
 )

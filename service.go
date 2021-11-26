@@ -184,3 +184,13 @@ func (config *Config) generateSecurityCredential(
 
 	return base64.StdEncoding.EncodeToString(encrypted), nil
 }
+
+func (config *Config) ReverseTransaction(requestBody *Reversal) (string, error) {
+	body, err := json.Marshal(requestBody)
+
+	if err != nil {
+		return "", err
+	}
+
+	return config.makeRequest("POST", body)
+}
