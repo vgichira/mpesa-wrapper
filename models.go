@@ -62,4 +62,17 @@ type (
 		Remarks                string `json:"Remarks"`
 		Occasion               string `json:"Occasion"`
 	}
+
+	TransactionStatus struct {
+		Initiator          string `json:"Initiator"`
+		SecurityCredential string `json:"SecurityCredential"`
+		CommandID          string `json:"CommandID"`
+		TransactionID      string `json:"TransactionID"`
+		PartyA             string `json:"PartyA"`
+		IdentifierType     string `json:"IdentifierType"`
+		ResultURL          string `json:"ResultURL"`
+		QueueTimeoutURL    string `json:"QueueTimeOutURL"`
+		Remarks            string `json:"Remarks"`
+		Occasion           string `json:"Occasion"`
+	}
 )

@@ -80,7 +80,10 @@ func (config *Config) LipaNaMpesaOnline(stkRequest *LipaNaMpesaRequest) (string,
 		return "", err
 	}
 
-	return config.makeRequest("POST", requestBody)
+	endpoint := fmt.Sprintf("%smpesa/stkpush/v1/processrequest",
+		config.getBaseUrl())
+
+	return config.makeRequest("POST", endpoint, requestBody)
 }
 
 func (config *Config) RegisterURL(requestBody *RegisterURL) (string, error) {
@@ -90,7 +93,10 @@ func (config *Config) RegisterURL(requestBody *RegisterURL) (string, error) {
 		return "", err
 	}
 
-	return config.makeRequest("POST", body)
+	endpoint := fmt.Sprintf("%smpesa/c2b/v1/registerurl",
+		config.getBaseUrl())
+
+	return config.makeRequest("POST", endpoint, body)
 }
 
 func (config *Config) SimulateC2B(requestBody *C2BTransaction) (string, error) {
@@ -100,7 +106,10 @@ func (config *Config) SimulateC2B(requestBody *C2BTransaction) (string, error) {
 		return "", err
 	}
 
-	return config.makeRequest("POST", body)
+	endpoint := fmt.Sprintf("%smpesa/c2b/v1/simulate",
+		config.getBaseUrl())
+
+	return config.makeRequest("POST", endpoint, body)
 }
 
 func (config *Config) InitiateB2C(requestBody *B2C) (string, error) {
@@ -110,15 +119,17 @@ func (config *Config) InitiateB2C(requestBody *B2C) (string, error) {
 		return "", err
 	}
 
-	return config.makeRequest("POST", body)
+	endpoint := fmt.Sprintf("%smpesa/b2c/v1/paymentrequest",
+		config.getBaseUrl())
+
+	return config.makeRequest("POST", endpoint, body)
 }
 
-func (config *Config) makeRequest(method string, body []byte) (string, error) {
+func (config *Config) makeRequest(method, endpoint string, body []byte) (string, error) {
 	client := &http.Client{}
 
 	request, err := http.NewRequest("POST",
-		fmt.Sprintf("%smpesa/b2c/v1/paymentrequest",
-			config.getBaseUrl()), bytes.NewReader(body))
+		endpoint, bytes.NewReader(body))
 
 	if err != nil {
 		return "", err
@@ -192,5 +203,21 @@ func (config *Config) ReverseTransaction(requestBody *Reversal) (string, error) 
 		return "", err
 	}
 
-	return config.makeRequest("POST", body)
+	endpoint := fmt.Sprintf("%smpesa/reversal/v1/request",
+		config.getBaseUrl())
+
+	return config.makeRequest("POST", endpoint, body)
+}
+
+func (config *Config) CheckTransactionStatus(requestBody *TransactionStatus) (string, error) {
+	body, err := json.Marshal(requestBody)
+
+	if err != nil {
+		return "", err
+	}
+
+	endpoint := fmt.Sprintf("%smpesa/transactionstatus/v1/query",
+		config.getBaseUrl())
+
+	return config.makeRequest("POST", endpoint, body)
 }
