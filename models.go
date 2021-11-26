@@ -27,4 +27,12 @@ type (
 		ResponseType    string `json:"ResponseType"`
 		ShortCode       string `json:"ShortCode"`
 	}
+
+	C2BTransaction struct {
+		CommandID     string `json:"CommandID"`
+		Amount        string `json:"Amount"`
+		MSISDN        string `json:"Msisdn"`
+		BillRefNumber string `json:"BillRefNumber"`
+		ShortCode     string `json:"ShortCode"`
+	}
 )

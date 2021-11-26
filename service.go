@@ -140,3 +140,42 @@ func (config *Config) RegisterURL(requestBody *RegisterURL) (string, error) {
 
 	return string(apiResponse), err
 }
+
+func (config *Config) SimulateC2B(requestBody *C2BTransaction) (string, error) {
+	body, err := json.Marshal(requestBody)
+
+	if err != nil {
+		return "", err
+	}
+
+	client := http.Client{}
+
+	request, err := http.NewRequest("POST",
+		fmt.Sprintf("%smpesa/c2b/v1/simulate",
+			config.getBaseUrl()), bytes.NewReader(body))
+
+	if err != nil {
+		return "", nil
+	}
+
+	token, err := config.generateToken()
+
+	if err != nil {
+		return "", err
+	}
+
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
+
+	response, err := client.Do(request)
+
+	if err != nil {
+		return "", err
+	}
+
+	defer response.Body.Close()
+
+	apiResponse, err := ioutil.ReadAll(response.Body)
+
+	return string(apiResponse), err
+}
