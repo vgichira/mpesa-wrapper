@@ -1,6 +1,7 @@
 package mpesa
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -60,4 +61,47 @@ func (config *Config) generateToken() (string, error) {
 	token := apiResponse["access_token"]
 
 	return token, nil
+}
+
+func (config *Config) LipaNaMpesaOnline(stkRequest *LipaNaMpesaRequest) (string, error) {
+	requestBody, err := json.Marshal(stkRequest)
+
+	if err != nil {
+		return "", err
+	}
+
+	client := http.Client{}
+
+	request, err := http.NewRequest("POST",
+		fmt.Sprintf("%smpesa/stkpush/v1/processrequest", config.getBaseUrl()),
+		bytes.NewBuffer(requestBody))
+
+	if err != nil {
+		return "", err
+	}
+
+	token, err := config.generateToken()
+
+	if err != nil {
+		return "", err
+	}
+
+	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
+
+	response, err := client.Do(request)
+
+	if err != nil {
+		return "", err
+	}
+
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+
+	if err != nil {
+		return "", err
+	}
+
+	return string(body), nil
 }
