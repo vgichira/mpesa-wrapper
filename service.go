@@ -132,7 +132,7 @@ func (config *Config) InitiateB2C(requestBody *B2C) (string, error) {
 func (config *Config) makeRequest(method, endpoint string, body []byte) (string, error) {
 	client := &http.Client{}
 
-	request, err := http.NewRequest("POST",
+	request, err := http.NewRequest(method,
 		endpoint, bytes.NewReader(body))
 
 	if err != nil {
