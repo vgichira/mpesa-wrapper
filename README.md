@@ -52,10 +52,61 @@ requestBody := &mpesa.LipaNaMpesaRequest{
 	PartyA: "",
 	PartyB: "",
 	PhoneNumber: "",
-	CallBackURL: ""
+	CallBackURL: "",
 	AccountReference: "",
 	TransactionDesc: "" ,
 }
 
 response, err := mpesaService.LipaNaMpesaOnline(requestBody)
+```
+
+## Register C2B Confirmation and Validation URLs
+```go
+requestBody:= &mpesa.RegisterURL {
+    ValidationURL: "",
+    ConfirmationURL: "",
+    ResponseType: "", // Cancelled / Completed
+    ShortCode: "",
+}
+
+response, err := mpesaService.RegisterURL(requestBody)
+```
+
+## Simulate C2B Transaction (Sandbox)
+```go
+    requestBody := &mpesa.C2BTransaction {
+        CommandID: "", // CustomerPayBillOnline / CustomerBuyGoodsOnline
+        Amount: "",
+        MSISDN: "",
+        BillRefNumber: "",
+        ShortCode: "",
+    }
+
+    response, err:= mpesaService.SimulateC2B(requestBody)
+```
+
+## Generate Security Credential
+
+```go
+securityCredential, err := mpesaService.GenerateSecurityCredential("PUBLIC_CERT_LOCATION", "INITIATOR_PASSWORD")
+```
+
+
+## Initiate B2C Transaction (Business to Customer)
+
+```go
+requestBody := &mpesa.B2C {
+    InitiatorName: "",
+    SecurityCredential: "",
+    CommandID: "", // Salary Payments / Business Payments / Promotion Payments
+    Amount: "",
+    PartyA: "",
+    PartyB: "",
+    Remarks: "",
+    QueueTimeoutURL: "",
+    ResultURL: "",
+    Occassion: "",
+}
+
+response, err := mpesaService.InitiateB2C(requestBody)
 ```
