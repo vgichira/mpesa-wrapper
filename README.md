@@ -6,5 +6,5 @@ This is an unofficial Mpesa Daraja API wrapper. You can easily install and reuse
 ## Initialize instance of the gateway
 
 ```go
-    mpesa, err := mpesa.Init("CONSUMER_KEY_HERE", "CONSUMER_SECRET_HERE", "ENVIROMENT (SANDBOX / LIVE)")
+    configs, err := mpesa.Init("CONSUMER_KEY_HERE", "CONSUMER_SECRET_HERE", "ENVIROMENT (SANDBOX / LIVE)")
 ```
