@@ -97,7 +97,7 @@ securityCredential, err := mpesaService.GenerateSecurityCredential("PUBLIC_CERT_
 ```go
 requestBody := &mpesa.B2C {
     InitiatorName: "",
-    SecurityCredential: "",
+    SecurityCredential: "", // Security credential generated above
     CommandID: "", // Salary Payments / Business Payments / Promotion Payments
     Amount: "",
     PartyA: "",
@@ -109,4 +109,43 @@ requestBody := &mpesa.B2C {
 }
 
 response, err := mpesaService.InitiateB2C(requestBody)
+```
+
+## Reverse Transaction
+
+```go
+requestBody := &mpesa.Reversal {
+    Initiator: "",
+    SecurityCredential: "",
+    CommandID: "",
+    TransactionID: "",
+    Amount: "",
+    ReceiverParty: "",
+    ReceiverIdentifierType: "",
+    ResultURL: "",
+    QueueTimeoutURL: "",
+    Remarks: "",
+    Occasion: "",
+}
+
+response, err := mpesaService.ReverseTransaction(requestBody)
+```
+
+## Check Transaction Status
+
+```go
+requestBody := &mpesa.TransactionStatus {
+    Initiator: "",
+    SecurityCredential: "",
+    CommandID: "",
+    TransactionID: "",
+    PartyA: "",
+    IdentifierType: "",
+    ResultURL: "",
+    QueueTimeoutURL: "",
+    Remarks: "",
+    Occasion: "",
+}
+
+response, err := mpesaService.CheckTransactionStatus(requestBody)
 ```
