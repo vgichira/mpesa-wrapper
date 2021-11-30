@@ -46,15 +46,15 @@ To send STK Push to client's phone number, you need to call the ***LipaNaMpesaOn
 requestBody := &mpesa.LipaNaMpesaRequest {
     BusinessShortCode: "",
     Password: "",
-	Timestamp: "",
-	TransactionType: "",
-	Amount: "",
-	PartyA: "",
-	PartyB: "",
-	PhoneNumber: "",
-	CallBackURL: "",
-	AccountReference: "",
-	TransactionDesc: "" ,
+    Timestamp: "",
+    TransactionType: "",
+    Amount: "",
+    PartyA: "",
+    PartyB: "",
+    PhoneNumber: "",
+    CallBackURL: "",
+    AccountReference: "",
+    TransactionDesc: "" ,
 }
 
 response, err := mpesaService.LipaNaMpesaOnline(requestBody)
