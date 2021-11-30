@@ -43,9 +43,9 @@ password := mpesaService.GenerateLipaNaMpesaPassword("SHORTCODE", "PASSKEY", "TI
 ## Send Lipa Na Mpesa (STK Push) Request
 To send STK Push to client's phone number, you need to call the ***LipaNaMpesaOnline*** method and pass the payload as a parameter.
 ```go
-requestBody := &mpesa.LipaNaMpesaRequest{
+requestBody := &mpesa.LipaNaMpesaRequest {
     BusinessShortCode: "",
-	Password: "",
+    Password: "",
 	Timestamp: "",
 	TransactionType: "",
 	Amount: "",
