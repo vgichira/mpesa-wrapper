@@ -4,6 +4,7 @@ This is an unofficial Mpesa Daraja API wrapper. You can easily install and reuse
 ## Installation
 
 ## Initialize instance of the gateway
+To start using the SDK, we first need to create a new instance of the service with the daraja app credentials and the environment. Environment is either SANDBOX or PRODUCTION.
 
 ```go
     configs, err := mpesa.Init("CONSUMER_KEY_HERE", "CONSUMER_SECRET_HERE", "ENVIROMENT (SANDBOX / LIVE)")
