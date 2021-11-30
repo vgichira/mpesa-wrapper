@@ -72,7 +72,7 @@ func (config *Config) generateToken() (string, error) {
 	return token, nil
 }
 
-func (config *Config) generateLipaNaMpesaPassword(shortCode, passKey, timestamp string) string {
+func (config *Config) GenerateLipaNaMpesaPassword(shortCode, passKey, timestamp string) string {
 	return base64.StdEncoding.EncodeToString([]byte(
 		fmt.Sprintf("%s%s%s", shortCode, passKey, timestamp)))
 }
@@ -163,7 +163,7 @@ func (config *Config) makeRequest(method, endpoint string, body []byte) (string,
 	return string(apiResponse), err
 }
 
-func (config *Config) generateSecurityCredential(
+func (config *Config) GenerateSecurityCredential(
 	publicCertLocation, initiatorPassword string) (string, error) {
 	var pubKey []byte
 
