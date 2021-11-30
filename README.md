@@ -20,17 +20,17 @@ When sending an STK Push request to a client phone number, one of the parameters
 
 ```yaml
 {
-"BusinessShortCode": "",
-"Password": "", // This password
-"Timestamp": "",
-"TransactionType": "",
-"Amount": "",
-"PartyA": "",
-"PartyB": "",
-"PhoneNumber": "",
-"CallBackURL": ""
-"AccountReference": "",
-"TransactionDesc": "" ,
+    "BusinessShortCode": "",
+    "Password": "", // This password
+    "Timestamp": "",
+    "TransactionType": "",
+    "Amount": "",
+    "PartyA": "",
+    "PartyB": "",
+    "PhoneNumber": "",
+    "CallBackURL": ""
+    "AccountReference": "",
+    "TransactionDesc": "" ,
 }
 ```
 
